@@ -1,0 +1,78 @@
+from grid import Point
+import heapq
+import math
+
+def euclidean_distance(point1, point2):
+    x1, y1 = point1
+    x2, y2 = point2
+    return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+
+
+def gbfs(source, destination, polygons):
+    def heuristic(current):
+        return euclidean_distance(current, destination)
+
+    heap = [(heuristic(source), source)]
+    visited = {source}
+    parent = {source: None}
+    node_expanded = 0
+
+    while heap:
+        _, current = heapq.heappop(heap)
+        node_expanded += 1
+        if current == destination:
+            break
+        for neighbor in get_neighbors(current, polygons):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                parent[neighbor] = current
+                heapq.heappush(heap, (heuristic(neighbor), neighbor))
+
+    if destination not in parent:
+        return None, node_expanded
+
+    path = []
+    current = destination
+    while current:
+        path.append(Point(*current))
+        current = parent[current]
+
+    path.reverse()
+    return path, node_expanded
+
+
+def isValidPoint(x, y, polygons):
+    for polygon in polygons:
+        for point in polygon:
+            if point == (x, y):
+                return False
+    else:
+        return True
+
+
+def get_neighbors(cell, polygons):
+    neighbors = []
+    rows, cols = 50, 50
+    x, y = cell
+
+    for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+        nx, ny = x + dx, y + dy
+        result = isValidPoint(nx, ny, polygons)
+        if 0 <= nx < rows and 0 <= ny < cols and result:
+            neighbors.append((nx, ny))
+
+    return neighbors
+
+
+if __name__ == "__main__":
+    source = (8, 10)
+    destination = (43, 45)
+
+    path, node_expanded, path_cost = gbfs(source, destination, [])
+
+    if path is None:
+        print("No path found.")
+    else:
+        print("Path found:", path)
+        print("Path cost:", path_cost)
+        print("Nodes expanded:", node_expanded)

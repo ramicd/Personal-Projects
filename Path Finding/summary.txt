@@ -1,0 +1,16 @@
+dfs1
+Path cost: 838.0
+Nodes expanded: 1242
+
+bfs1
+Path cost: 88.0
+Nodes expanded: 2037
+
+gbfs1
+Path cost: 95.0
+Nodes expanded: 103
+
+astar1
+Path cost: 90.0
+Nodes expanded: 1360
+
