@@ -1,0 +1,37 @@
+The attributes, constraints, and preferences used to test my recommender system are below:
+The instance consists of several variables relevant to the average restaurant dining
+experience. These variables are represented as the attributes listed below. The constraints
+that follow represent money-losing relationships among these variables that the 
+restaurant has picked up on and has taken measures to control. The statements to the side
+of the constraints are equivalent to those on the left and are a bit easier to read. The 
+preferences beyond that contain a pair of variables and a preference rating that signifies 
+how important the relationship between the two variables is to a particular customer. For 
+example, the customer describes by this instance would be quite upset about not having fish 
+and wine. 
+
+Attributes:
+seating: booth, table
+kids-menu: kids-menu, no-kids-menu
+bread: bread, no-bread
+water: water, lemon-water
+appetizer: salad, soup
+drink: beer, wine
+entree: fish, steak
+side: french-fries, vegetables
+dessert: cake, ice-cream
+
+Constraints:
+NOT beer OR NOT fish				= Not(wine and steak)  
+NOT wine OR NOT steak				= Not(beer and fish)
+NOT french-fries OR NOT cake			= Not(vegetables and ice-cream)
+NOT wine OR NOT no-kids-menu			= Not(beer and kids-menu)
+NOT steak OR NOT vegetables			= Not(fish and french-fries)
+NOT booth OR NOT bread				= Not(table and no-bread)
+
+Preferences:
+fish AND wine, 10
+bread AND booth, 6
+water OR bread, 7
+vegetables AND fish, 5
+kids-menu AND table, 8
+wine OR ice-cream, 3

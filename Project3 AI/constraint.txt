@@ -1,0 +1,6 @@
+NOT beer OR NOT fish
+NOT wine OR NOT steak
+NOT french-fries OR NOT cake
+NOT wine OR NOT no-kids-menu
+NOT steak OR NOT vegetables
+NOT booth OR NOT bread

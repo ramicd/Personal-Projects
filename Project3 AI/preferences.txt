@@ -1,0 +1,6 @@
+fish AND wine, 10
+bread AND booth, 6
+water OR bread, 7
+vegetables AND fish, 5
+kids-menu AND table, 8
+wine OR ice-cream, 3
